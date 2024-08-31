@@ -1,0 +1,35 @@
+  version: '3.8'
+
+  services:
+    springboot-ecom:
+      image: springboot-app:latest
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8181:8181"
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-ecom:3306/ecommerce
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root
+        SPRING_JPA_HIBERNATE_DDL_AUTO: update
+        SPRING_JPA_SHOW_SQL: "true"
+        SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+        SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+      depends_on:
+        - mysql-ecom
+
+    mysql-ecom:
+      image: mysql:8.0
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: ecommerce
+      ports:
+        - "3307:3306"
+      volumes:
+        - mysql_data:/var/lib/mysql
+
+  volumes:
+    mysql_data:
+
+

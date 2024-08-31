@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="ECOM-1" author="Shankar">
+        <createTable tableName="product">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brand" type="varchar(255)"/>
+            <column name="category_id" type="int"/>
+            <column name="image" type="mediumblob"/>
+            <column name="description" type="varchar(1500)"/>
+            <column name="price" type="float"/>
+            <column name="discount" type="float"/>
+            <column name="stock" type="int"/>
+        </createTable>
+
+
+
+    </changeSet>
+
+</databaseChangeLog>

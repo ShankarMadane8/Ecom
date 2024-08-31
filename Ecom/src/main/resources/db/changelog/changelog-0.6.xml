@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="ECOM-6" author="Shankar">
+        <createTable tableName="orders">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int"/>
+            <column name="product_id" type="int"/>
+            <column name="quantity" type="int"/>
+            <column name="order_date" type="datetime"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="user_id"
+                                 constraintName="fk_orders_user"
+                                 referencedTableName="user" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="product_id"
+                                 constraintName="fk_orders_product"
+                                 referencedTableName="product" referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>
