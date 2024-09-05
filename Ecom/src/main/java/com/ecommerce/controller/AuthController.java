@@ -46,6 +46,15 @@ public class AuthController {
     @Autowired
     UserRepository userRepository;
 
+
+    private static final String GITHUB_CLIENT_ID = "Ov23limPvurAUkypiyUp";
+    private static final String GITHUB_CLIENT_SECRET = "816c3934f0aa446a7fc0a85956ec6fe9dc662f94";
+
+    private static final String FACEBOOK_CLIENT_ID = "1177202586887125";
+    private static final String FACEBOOK_CLIENT_SECRET = "155ca194ce0e2d97064d2e7c1dadaff0";
+
+
+
     //    @Hidden
     @Operation(summary = "Authenticate a user", description = "Authenticate user and generate a JWT token.")
     @ApiResponses(value = {
@@ -163,8 +172,7 @@ public class AuthController {
     }
 
     private String getAccessTokenFromGitHub(String code) {
-        String clientId = "Ov23limPvurAUkypiyUp";
-        String clientSecret = "816c3934f0aa446a7fc0a85956ec6fe9dc662f94";
+
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://github.com/login/oauth/access_token";
@@ -174,8 +182,8 @@ public class AuthController {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         Map<String, String> requestBody = Map.of(
-                "client_id", clientId,
-                "client_secret", clientSecret,
+                "client_id", GITHUB_CLIENT_ID,
+                "client_secret", GITHUB_CLIENT_SECRET,
                 "code", code
         );
 
@@ -207,8 +215,6 @@ public class AuthController {
     }
 
     private String getAccessTokenFromFacebook(String code) {
-        String clientId = "1177202586887125"; // replace with your Facebook Client ID
-        String clientSecret = "155ca194ce0e2d97064d2e7c1dadaff0"; // replace with your Facebook Client Secret
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://graph.facebook.com/v10.0/oauth/access_token";
@@ -218,8 +224,8 @@ public class AuthController {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         Map<String, String> requestBody = Map.of(
-                "client_id", clientId,
-                "client_secret", clientSecret,
+                "client_id", FACEBOOK_CLIENT_ID,
+                "client_secret", FACEBOOK_CLIENT_SECRET,
                 "code", code,
                 "redirect_uri", "http://localhost:3000/login?provider=facebook"
         );
