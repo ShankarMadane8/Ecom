@@ -74,7 +74,7 @@ public class MySecurityConfig {
 				.csrf(csrf -> csrf.disable())
 				.authorizeRequests(authorize -> authorize
 						.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-						.requestMatchers("/auth/login", "/users/register").permitAll()
+						.requestMatchers("/auth/login","/auth/github/callback","/auth/facebook/callback", "/users/register").permitAll()
 						.requestMatchers(HttpMethod.GET, "/categories/**", "/products/**", "/orders/**","/cart/**").hasAnyAuthority("ADMIN", "USER")
 						.requestMatchers("/cart/**").hasAnyAuthority("USER","ADMIN")
 						.requestMatchers("/categories/**", "/products/**", "/orders/**").hasAuthority("ADMIN")

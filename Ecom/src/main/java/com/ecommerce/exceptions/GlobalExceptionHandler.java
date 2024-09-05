@@ -45,8 +45,8 @@ public class GlobalExceptionHandler {
         return ResponseHandler.generateResponse(HttpStatus.BAD_REQUEST, errorMessage.toString().trim(), null);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleUserNotFoundException(Exception ex, WebRequest request) {
-        return ResponseHandler.generateResponse(HttpStatus.INTERNAL_SERVER_ERROR,"An unexpected error occurred: " + ex.getMessage(),null);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<?> handleUserNotFoundException(Exception ex, WebRequest request) {
+//        return ResponseHandler.generateResponse(HttpStatus.INTERNAL_SERVER_ERROR,"An unexpected error occurred: " + ex.getMessage(),null);
+//    }
 }
